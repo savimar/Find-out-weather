@@ -34,7 +34,16 @@ public class JsonUtil {
                 JsonNode dataWeather = data.get("weather").get(0);
                 stringJoiner.add(dataWeather.get("main").asText());
                 stringJoiner.add(dataWeather.get("description").asText());
-                stringJoiner.add(rootNode.get("city").get("country").asText());
+
+                JsonNode dataCity = rootNode.get("city");
+                if (Objects.nonNull(dataCity.get("country"))) {
+                    stringJoiner.add(dataCity.get("country").asText());
+                }
+
+                if (Objects.nonNull(dataCity.get("name"))) {
+                    stringJoiner.add(dataCity.get("name").asText());
+                }
+
 
 
             }

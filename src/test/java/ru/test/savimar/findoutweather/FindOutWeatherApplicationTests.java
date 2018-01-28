@@ -21,7 +21,7 @@ public class FindOutWeatherApplicationTests {
 
     @Test
     public void getWeather() {
-        String json = weatherUtil.parseUrl("London");
+        String json = weatherUtil.getWeatherByCity("London");
         String[] weather = json.split(";");
         Assert.assertEquals(weather[5], "GB");
     }
