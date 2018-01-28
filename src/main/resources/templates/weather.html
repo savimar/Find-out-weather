@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Погода сегодня </title>
+</head>
+<body>
+<h1>Погода сегодня:</h1>
+
+<h2>
+    <!--/*@thymesVar id="city" type="java.lang.String"*/-->
+    <span th:text="'Погода в городе: ' + ${city}"></span>
+    <!--/*@thymesVar id="country" type="java.lang.String"*/-->
+    <span th:text="'Страна: ' + ${country}"></span>
+
+
+</h2>
+<div>
+    <h3>
+
+
+        <!--/*@thymesVar id="temp" type="java.lang.String"*/-->
+        <span th:text="'Температура: ' + ${temp}"></span>
+
+        <!--/*@thymesVar id="pressure" type="java.lang.String"*/-->
+        <span th:text="'Давление: ' + ${pressure}"></span>
+
+        <!--/*@thymesVar id="humidity" type="java.lang.String"*/-->
+        <span th:text="'Влажность: ' + ${humidity}"></span>
+
+    </h3>
+</div>
+
+<div>
+    <h3>
+
+
+        <!--/*@thymesVar id="rain" type="java.lang.String"*/-->
+        <span th:text="'Осадки: ' + ${rain}"></span>
+
+    </h3>
+</div>
+</body>
+</html>
+
+

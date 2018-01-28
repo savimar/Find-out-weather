@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Погода сегодня </title>
+</head>
+<body>
+<h1>Погода сегодня:</h1>
+
+<form action="showWeather" method="post" enctype="multipart/form-data">
+
+    <p>
+        <label for="user">Введите имя:</label>
+
+        <!--/*@thymesVar id="user" type="java.lang.String"*/-->
+        <input type="text" name="user" id="user" th:value="${user}"/>
+    </p>
+    <!--  <br/><br/>-->
+
+    <p><label for="city">Введите город:</label>
+        <!--/*@thymesVar id="city" type="java.lang.String"*/-->
+        <input type="text" name="city" id="city" th:value="${city}"/>
+        <!-- <br/><br/>-->
+    </p>
+    <p>
+        <input type="submit" value="Узнать погоду" name="submit"/>
+    </p>
+</form>
+
+</body>
+</html>
+
+
+

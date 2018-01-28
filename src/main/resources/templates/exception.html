@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Погода сегодня </title>
+</head>
+<body>
+<h1>Погода сегодня:</h1>
+<div>
+    <h2>
+        <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+        <span th:text="'Ошибка: ' + ${message}"></span>
+    </h2>
+</div>
+</body>
+</html>
