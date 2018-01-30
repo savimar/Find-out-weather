@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import ru.test.savimar.findoutweather.service.WeatherUtil;
+import ru.test.savimar.findoutweather.service.WeatherService;
 
 import java.time.LocalDateTime;
 
@@ -21,7 +21,7 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
 
     private static final Logger LOG = Logger.getLogger(CurrentWeatherController.class);
     @Autowired
-    WeatherUtil weatherUtil;
+    WeatherService weatherService;
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -57,9 +57,9 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
 
             String result = null;
             if (!city.trim().equals("")) {
-                result = weatherUtil.getWeatherByCity(city);
+                result = weatherService.getWeatherByCity(city);
             } else if (!(longitude.trim().equals("") && latitude.trim().equals(""))) {
-                result = weatherUtil.getWeatherByGeo(longitude, latitude);
+                result = weatherService.getWeatherByGeo(longitude, latitude);
             }
 
 

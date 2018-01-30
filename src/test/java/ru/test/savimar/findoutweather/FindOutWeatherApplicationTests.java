@@ -6,14 +6,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.test.savimar.findoutweather.service.WeatherUtil;
+import ru.test.savimar.findoutweather.service.WeatherService;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FindOutWeatherApplicationTests {
 
     @Autowired
-    WeatherUtil weatherUtil;
+    WeatherService weatherService;
 
     @Test
     public void contextLoads() {
@@ -21,7 +22,7 @@ public class FindOutWeatherApplicationTests {
 
     @Test
     public void getWeather() {
-        String json = weatherUtil.getWeatherByCity("London");
+        String json = weatherService.getWeatherByCity("London");
         String[] weather = json.split(";");
         Assert.assertEquals(weather[5], "GB");
     }

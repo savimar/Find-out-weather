@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FindOutWeatherApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(FindOutWeatherApplication.class, args);
     }
 }

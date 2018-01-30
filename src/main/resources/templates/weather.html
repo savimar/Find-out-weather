@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Погода сегодня </title>
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="css/style.css" th:href="@{/css/gtvg.css}"/>
 </head>
 <body>
 <h1>Погода сегодня:</h1>
@@ -32,12 +35,11 @@
 
 <div>
     <h3>
-
-
         <!--/*@thymesVar id="rain" type="java.lang.String"*/-->
         <span th:text="'Осадки: ' + ${rain}"></span>
 
     </h3>
+
 </div>
 </body>
 </html>

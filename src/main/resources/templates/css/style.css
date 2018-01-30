@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #AFF0ED;
+    font-size: 14px;
+    color: #0E0CF3;
+    line-height: 18px;
+    align-items: center;
+
+}
+
+img {
+    margin: 2%;
+}
+
+p {
+    margin: 2%;
+    clear: both;
+
+}
+
+label {
+    color: #2B0203;
+    font-style: italic;
+
+}
+
+h1 {
+    align-items: center;
+    margin: 5%;
+}
+
+h3 {
+    align-items: center;
+    margin: 5%;
+}
+
+input {
+    padding: inherit;
+}
+
+table {
+    margin: 2%;
+    font-size: 130%;
+
+}
+
+td, th {
+    padding: 5px; /* Поля вокруг текста */
+}
+
+.button {
+
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    border-width: 2px 0;
+    border-style: solid none;
+    border-color: #541AF9;
+    border-radius: 6px;
+    background: #541AF9;
+    transition: 0.2s;
+
+}
+
+.form {
+
+    color: white;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 5%;
+
+}
+
+.label {
+    color: #162F04;
+
+}
+
+
+
+
+
+

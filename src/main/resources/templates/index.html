@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!--<link th:href="@{../templates/css/style.css}" href="/templates/css/style.css" rel="stylesheet" type="text/css"  />-->
+<link th:href="@{../../templates/css/style.css}" href="css/style.css" rel="stylesheet" type="text/css"/>
 <head>
     <title>Погода сегодня </title>
 </head>
 <body>
+<p></p>
 <h1>Погода сегодня:</h1>
-
+<p></p>
 <form action="showWeather" method="post" enctype="multipart/form-data">
 
-    <div>
-        <label for="user">Введите имя:</label>
-
-        <!--/*@thymesVar id="user" type="java.lang.String"*/-->
-        <input type="text" name="user" id="user" th:value="${user}"/>
+    <div class="form">
 
 
-        <label for="city">Введите город:</label>
-        <!--/*@thymesVar id="city" type="java.lang.String"*/-->
-        <input type="text" name="city" id="city" th:value="${city}"/>
-        <!-- <br/><br/>-->
-    </div>
-    <div>
-        <h3>
-            <span th:text="'Или введите геоданные: ' "></span>
-        </h3>
-        <label for="longitude">Введите долготу:</label>
-        <!--/*@thymesVar id="longitude" type="java.lang.String"*/-->
-        <input type="text" name="longitude" id="longitude" th:value="${longitude}"/>
-        <label for="latitude">Введите широту:</label>
-        <!--/*@thymesVar id="latitude" type="java.lang.String"*/-->
-        <input type="text" name="latitude" id="latitude" th:value="${latitude}"/>
+        <p></p>
+        <div>
 
-        <input type="submit" value="Узнать погоду" name="submit"/>
+            <table width="70%" border="0" cellspacing="3" cellpadding="3">
+                <tbody>
+                <tr>
+                    <td><label for="user">Введите имя:</label></td>
+                    <!--/*@thymesVar id="user" type="java.lang.String"*/-->
+                    <td><input type="text" name="user" id="user" th:value="${user}"/></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><label for="city">Введите город:</label></td>
+                    <td> <!--/*@thymesVar id="city" type="java.lang.String"*/-->
+                        <input type="text" name="city" id="city" th:value="${city}"/></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><label>Если город пустой, введите геоданные: </label></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><label for="longitude">Введите долготу:</label>&nbsp;</td>
+                    <td>  <!--/*@thymesVar id="longitude" type="java.lang.String"*/-->
+                        <input type="text" name="longitude" id="longitude" th:value="${longitude}"/></td>
+                    <td><label for="latitude">Введите широту:</label></td>
+                    <td> <!--/*@thymesVar id="latitude" type="java.lang.String"*/-->
+                        <input type="text" name="latitude" id="latitude" th:value="${latitude}"/></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <p></p>
+            <div>
+                <input type="submit" value="Узнать погоду" name="submit"/>
+            </div>
+        </div>
     </div>
 </form>
 
