@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 public class CurrentWeatherController extends WebMvcConfigurerAdapter {
 
     private static final Logger LOG = Logger.getLogger(CurrentWeatherController.class);
+
     @Autowired
     WeatherService weatherService;
 

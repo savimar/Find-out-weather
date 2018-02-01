@@ -2,43 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Погода сегодня </title>
-
-    <link rel="stylesheet" type="text/css" media="all"
-          href="css/style.css" th:href="@{/css/gtvg.css}"/>
+    <link th:href="@{/css/style.css}" href="../static/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <h1>Погода сегодня:</h1>
 
-<h2>
-    <!--/*@thymesVar id="city" type="java.lang.String"*/-->
-    <span th:text="'Погода в городе: ' + ${city}"></span>
+<div>
+
+    <table width="35%" border="0" cellspacing="5" cellpadding="5">
+        <tbody>
+        <tr>
+            <td><label>Погода в городе:</label></td>
+            <!--/*@thymesVar id="city" type="java.lang.String"*/-->
+            <td><span th:text="${city}"></span></td>
+        </tr>
+        <tr>
+            <td><label>Страна:</label></td>
     <!--/*@thymesVar id="country" type="java.lang.String"*/-->
-    <span th:text="'Страна: ' + ${country}"></span>
-
-
-</h2>
-<div>
-    <h3>
-
-
+            <td><span th:text="${country}"></span></td>
+        </tr>
+        <tr>
+            <td><label>Температура:</label></td>
         <!--/*@thymesVar id="temp" type="java.lang.String"*/-->
-        <span th:text="'Температура: ' + ${temp}"></span>
-
-        <!--/*@thymesVar id="pressure" type="java.lang.String"*/-->
-        <span th:text="'Давление: ' + ${pressure}"></span>
-
+            <td><span th:text="${temp}"></span></td>
+        </tr>
+        <tr>
+            <td><label>Давление:</label></td>
+            <!--/*@thymesVar id="pressure" type="java.lang.String"*/-->
+            <td><span th:text="${pressure}"></span></td>
+        </tr>
+        <tr>
+            <td><label>Влажность:</label></td>
         <!--/*@thymesVar id="humidity" type="java.lang.String"*/-->
-        <span th:text="'Влажность: ' + ${humidity}"></span>
-
-    </h3>
-</div>
-
-<div>
-    <h3>
+            <td><span th:text="${humidity}"></span></td>
+        </tr>
+        <tr>
+            <td><label>Осадки:</label></td>
         <!--/*@thymesVar id="rain" type="java.lang.String"*/-->
-        <span th:text="'Осадки: ' + ${rain}"></span>
+            <td><span th:text="${rain}"></span></td>
+        </tr>
+        </tbody>
+    </table>
 
-    </h3>
 
 </div>
 </body>
