@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.test.savimar.findoutweather.json.JsonUtil;
+import ru.test.savimar.findoutweather.model.Weather;
 
 import java.net.URI;
 
@@ -16,19 +17,21 @@ public class WeatherService {
     private static final Logger LOG = Logger.getLogger(WeatherService.class);
     private final String COMMON_URL = "http://api.openweathermap.org/data/2.5/forecast?";
     private final String APPID = "&units=metric&APPID=321327410d7438a508de3297727018b2";
+
     @Autowired
     JsonUtil jsonUtil;
 
-    public String getWeatherByCity(String city) {
+    public Weather getWeatherByCity(String city) {
         return getWeather(COMMON_URL + "q=" + city + APPID);
     }
 
-    public String getWeatherByGeo(String longitude, String latitude) {
+    public Weather getWeatherByGeo(String longitude, String latitude) {
         return getWeather(COMMON_URL + "lat=" + latitude + "&lon=" + longitude + APPID);
     }
 
-    private String getWeather(String url) {
+    private Weather getWeather(String url) {
 
+        Weather weather = null;
         String json = null;
 
         RestTemplate restTemplate = new RestTemplate();
@@ -39,14 +42,14 @@ public class WeatherService {
             LOG.error("Invalid format URI");
         }
 
-        String result = null;
+
         try {
-            result = jsonUtil.parseJson(json);
+            weather = jsonUtil.parseJson(json);
         } catch (Exception e) {
             LOG.error("Invalid format json", e);
         }
 
-        return result;
+        return weather;
     }
 
 }

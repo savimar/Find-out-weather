@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import ru.test.savimar.findoutweather.model.Weather;
 import ru.test.savimar.findoutweather.service.WeatherService;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Controller
@@ -56,55 +58,42 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
             LOG.info("User " + user + " come " + LocalDateTime.now());
 
 
-            String result = null;
+            Weather weather = null;
             if (!city.trim().equals("")) {
-                result = weatherService.getWeatherByCity(city);
+                weather = weatherService.getWeatherByCity(city);
             } else if (!(longitude.trim().equals("") && latitude.trim().equals(""))) {
-                result = weatherService.getWeatherByGeo(longitude, latitude);
+                weather = weatherService.getWeatherByGeo(longitude, latitude);
             }
 
 
-            if (result != null) {
-                String[] weathers = result.split(";");
-
-                if (weathers.length > 0) {
-
-                    modelAndView.addObject("city", city);
-                    modelAndView.setViewName("weather");
-
-
-                    modelAndView.addObject("temp", weathers[0]);
-                    modelAndView.addObject("pressure", weathers[1]);
-                    modelAndView.addObject("humidity", weathers[2]);
-                    modelAndView.addObject("rain", weathers[4]);
-                    modelAndView.addObject("precipitation", weathers[3]);
-                    if (weathers.length > 5) {
-                        modelAndView.addObject("country", weathers[5]);
-                    } else {
-                        modelAndView.addObject("country", "Страна не определена");
-                    }
-                    if (city.trim().equals("")) {
-                        if (weathers.length > 5) {
-                            city = weathers[6];
-                        } else {
-                            city = "Город не определен";
-                        }
-                    }
-
-                    LOG.info(LocalDateTime.now() + " User " + user + " ask weather  to city " + city + " and get data: " + result);
+            if (weather != null) {
+                if (Objects.nonNull(weather.getCity().getCountry())) {
+                    modelAndView.addObject("country", weather.getCity().getCountry());
                 } else {
-                    if (!city.trim().equals("")) {
-                        text = LocalDateTime.now() + " Пользователь " + user + " спросил погоду по городу " + city + ", но такой город не найден";
-                    } else {
-                        text = LocalDateTime.now() + " Пользователь " + user + " спросил погоду по геоданным: долгота" + longitude + " и долгота " + latitude + ", но такие данные не найдены";
+                    modelAndView.addObject("country", "Страна не определена");
+                    if (city.equals("")) {
+                        city = Objects.nonNull(weather.getCity().getName()) ? weather.getCity().getName() : "Город не определен. Координаты: lon = " + longitude + ", lat = " + latitude;
                     }
-                    getException(modelAndView, null, text);
-                    LOG.error(text);
+
                 }
 
+                modelAndView.addObject("city", city);
+                modelAndView.setViewName("weather");
 
+
+                modelAndView.addObject("temp", weather.getData().getDataMain().getTemp());
+                modelAndView.addObject("pressure", weather.getData().getDataMain().getPressure());
+                modelAndView.addObject("humidity", weather.getData().getDataMain().getHumidity());
+                modelAndView.addObject("rain", weather.getData().getPrecipitation().getDescription());
+                modelAndView.addObject("precipitation", weather.getData().getPrecipitation().getMain());
+
+                LOG.info(LocalDateTime.now() + " User " + user + " ask weather  for city " + city + " and get data: " + weather.toString());
             } else {
-                text = LocalDateTime.now() + " Пользователь " + user + " спросил погоду, данных не найдено";
+                if (!city.trim().equals("")) {
+                    text = LocalDateTime.now() + " User " + user + " ask weather  for city " + city + ", it not found";
+                } else {
+                    text = LocalDateTime.now() + " User " + user + " ask weather  by  geo: longitude" + longitude + " and latitude " + latitude + ", it not found";
+                }
                 getException(modelAndView, null, text);
                 LOG.error(text);
             }
@@ -126,22 +115,3 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
     }
 }
 
-/* [[${precipitation}]];*/
-/* /!*[[@{/c/} + ${#precipitation} ]]*!/ "";*/
-/*   /!*[[$precipitation ]]*!/ '';*/
-/* /!*[[${precipitation ]]*!/;*/
-    /*     /!*[[@{${precipitation}}]]*!/'';
-        /!*[//div[@class='content']]"
-            [div.content]*!/
-
-       /!* var weather = "rain";*!/*/
-/*<![CDATA[*//*
-var weather = *//*[[${precipitation}]]*//*
- *//*]]>*/
-
-
-/*[+
-
- var weather  = 'My village name, ' + [[${precipitation}]];
-
- +]*/

@@ -12,6 +12,7 @@ public class WeatherObjectMapper extends ObjectMapper {
     public WeatherObjectMapper() {
         setSerializationInclusion(JsonInclude.Include.NON_NULL);
         configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        /* configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);*/
     }
+
+
 }
