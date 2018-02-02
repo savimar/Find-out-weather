@@ -40,7 +40,7 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
     public ModelAndView getSity(@RequestParam String city, @RequestParam String user, @RequestParam String longitude, @RequestParam String latitude) {
         String text;
         ModelAndView modelAndView = new ModelAndView();
-        if ((city == null || city.trim().equals("")) && (longitude == null || longitude.trim().equals("")) && (latitude == null || latitude.trim().equals(""))) {
+        if ((city.trim().equals("")) && (longitude == null || longitude.trim().equals("")) && (latitude == null || latitude.trim().equals(""))) {
             text = LocalDateTime.now() + " Введите город или данные геолокации";
             getException(modelAndView, null, text);
         } else if (!city.trim().equals("") && !longitude.trim().equals("") && !latitude.trim().equals("")) {
@@ -77,6 +77,7 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
                     modelAndView.addObject("pressure", weathers[1]);
                     modelAndView.addObject("humidity", weathers[2]);
                     modelAndView.addObject("rain", weathers[4]);
+                    modelAndView.addObject("precipitation", weathers[3]);
                     if (weathers.length > 5) {
                         modelAndView.addObject("country", weathers[5]);
                     } else {
@@ -125,3 +126,22 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
     }
 }
 
+/* [[${precipitation}]];*/
+/* /!*[[@{/c/} + ${#precipitation} ]]*!/ "";*/
+/*   /!*[[$precipitation ]]*!/ '';*/
+/* /!*[[${precipitation ]]*!/;*/
+    /*     /!*[[@{${precipitation}}]]*!/'';
+        /!*[//div[@class='content']]"
+            [div.content]*!/
+
+       /!* var weather = "rain";*!/*/
+/*<![CDATA[*//*
+var weather = *//*[[${precipitation}]]*//*
+ *//*]]>*/
+
+
+/*[+
+
+ var weather  = 'My village name, ' + [[${precipitation}]];
+
+ +]*/
