@@ -1,7 +1,7 @@
 # Find-out-weather
 Spring Boot, Thymeleaf, Jeckson, jQuery
 
-test task: getting curretn weather
+test task: getting current weather
 
 
 Тестовое задание следующее: написать веб приложение для отображения погоды.
