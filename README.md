@@ -1,7 +1,8 @@
 # Find-out-weather
 Spring Boot, Thymeleaf, Jeckson, jQuery
-getting curretn weather
-test task
+
+test task: getting curretn weather
+
 
 Тестовое задание следующее: написать веб приложение для отображения погоды.
 Приложение должно позволять пользователям узнавать текущую погоду для конкретного города или локации (долгота/широта) (не обязательно реальную, это могут быть случайные данные - температура, ветер, давление... или данные с http://openweathermap.org/api).
