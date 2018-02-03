@@ -1,7 +1,6 @@
 package ru.test.savimar.findoutweather.json;
 
 
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -22,10 +21,6 @@ public class JsonUtil {
     public Weather parseJson(String json) {
         System.setProperty("file.encoding", "UTF-8");
         Weather weather = null;
-
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(Weather.class, new WeatherDeserializer());
-        mapper.registerModule(module);
 
         LOG.info("JSON: " + json);
         try {
