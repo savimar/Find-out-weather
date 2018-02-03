@@ -23,7 +23,7 @@ public class WeatherDeserializer extends JsonDeserializer<Weather> {
         Weather weather = new Weather();
         JsonNode node = jp.getCodec().readTree(jp);
 
-        JsonNode dataNode = node.get("list").get(0);
+        JsonNode dataNode = node.get("list").get(0); //nearest
 
         JsonNode main = dataNode.get("main");
         Data data = new Data();
