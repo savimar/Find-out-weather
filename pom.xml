@@ -27,7 +27,6 @@
     <dependencies>
 
         <!--   spring-boot-->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -45,9 +44,7 @@
         </dependency>
 
 
-
         <!-- json-->
-
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
@@ -55,7 +52,6 @@
         </dependency>
 
         <!--  logger-->
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>

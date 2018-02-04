@@ -52,7 +52,7 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
             text = LocalDateTime.now() + " Имя пользователя пустое";
             getException(modelAndView, null, text);
         } else if (city.trim().equals("") && (!(NumberUtils.isNumber(latitude) && NumberUtils.isNumber(longitude)))) {
-            text = LocalDateTime.now() + " Данные в полях геолокации должны быть только числами";
+            text = LocalDateTime.now() + " Данные в полях геолокации должны быть только числа";
             getException(modelAndView, null, text);
         } else {
             LOG.info("User " + user + " come " + LocalDateTime.now());
