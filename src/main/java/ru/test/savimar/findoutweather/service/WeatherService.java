@@ -9,6 +9,10 @@ import ru.test.savimar.findoutweather.json.JsonUtil;
 import ru.test.savimar.findoutweather.model.Weather;
 
 import java.net.URI;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 @Service
@@ -21,6 +25,10 @@ public class WeatherService {
     @Autowired
     JsonUtil jsonUtil;
 
+    Future<Weather> future;
+
+    ExecutorService service = Executors.newFixedThreadPool(1);
+
     public Weather getWeatherByCity(String city) {
         return getWeather(COMMON_URL + "q=" + city + APPID);
     }
@@ -30,26 +38,37 @@ public class WeatherService {
     }
 
     private Weather getWeather(String url) {
+        Callable<Weather> callable = () -> {
+            Weather weather = null;
+            String json = null;
 
-        Weather weather = null;
-        String json = null;
+            RestTemplate restTemplate = new RestTemplate();
+            try {
+                json = restTemplate.getForObject(new URI(url), String.class);
 
-        RestTemplate restTemplate = new RestTemplate();
+            } catch (Exception e) {
+                LOG.error("Invalid format URI");
+            }
+
+
+            try {
+                weather = jsonUtil.parseJson(json);
+            } catch (Exception e) {
+                LOG.error("Invalid format json", e);
+            }
+            return weather;
+        };
+
+        Future<Weather> future = service.submit(callable);
         try {
-            json = restTemplate.getForObject(new URI(url), String.class);
-
+            return future.get();
+        } catch (InterruptedException e) {
+            LOG.error("Callable Exception future = " + future, e);
         } catch (Exception e) {
-            LOG.error("Invalid format URI");
+            LOG.error(e);
         }
-
-
-        try {
-            weather = jsonUtil.parseJson(json);
-        } catch (Exception e) {
-            LOG.error("Invalid format json", e);
-        }
-
-        return weather;
+        return null;
     }
+
 
 }

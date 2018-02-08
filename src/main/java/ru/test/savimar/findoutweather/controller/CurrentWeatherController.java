@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import ru.test.savimar.findoutweather.model.Weather;
 import ru.test.savimar.findoutweather.service.WeatherService;
 
@@ -19,17 +17,14 @@ import java.util.Objects;
 
 
 @Controller
-public class CurrentWeatherController extends WebMvcConfigurerAdapter {
+public class CurrentWeatherController {
 
     private static final Logger LOG = Logger.getLogger(CurrentWeatherController.class);
 
     @Autowired
     WeatherService weatherService;
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/resources/templates").setViewName("index");
-    }
+
 
 
     @RequestMapping("/")
@@ -52,7 +47,7 @@ public class CurrentWeatherController extends WebMvcConfigurerAdapter {
             text = LocalDateTime.now() + " Имя пользователя пустое";
             getException(modelAndView, null, text);
         } else if (city.trim().equals("") && (!(NumberUtils.isNumber(latitude) && NumberUtils.isNumber(longitude)))) {
-            text = LocalDateTime.now() + " Данные в полях геолокации должны быть только числа";
+            text = LocalDateTime.now() + " В полях геолокации должны быть только числа";
             getException(modelAndView, null, text);
         } else {
             LOG.info("User " + user + " come " + LocalDateTime.now());
