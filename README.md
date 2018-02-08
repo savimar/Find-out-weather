@@ -1,5 +1,5 @@
 # Find-out-weather
-Spring Boot, Thymeleaf, Jackson, jQuery
+Spring Boot, Thymeleaf, Jackson, Multithreading, jQuery
 
 test task: getting current weather
 
